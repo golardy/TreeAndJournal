@@ -11,3 +11,7 @@
 /TreeAndJournal.Application/obj
 /TreeAndJournal.Domain/obj/Debug
 /TreeAndJournal.Infrastructure/obj
+/TreeAndJournal.Api/bin/Debug/net7.0
+/TreeAndJournal.Application/bin/Debug/net7.0
+/TreeAndJournal.Domain/bin/Debug
+/TreeAndJournal.Infrastructure/bin/Debug/net7.0

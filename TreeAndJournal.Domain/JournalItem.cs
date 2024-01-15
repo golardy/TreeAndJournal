@@ -8,10 +8,10 @@ namespace TreeAndJournal.Domain
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-        public int EventId { get; set; }
+        public long Id { get; set; }
+        public long EventId { get; set; }
         public string Path { get;set;}
-        public string Params { get; set;}
+        public string RequestParams { get; set; }
         public string StackTrace { get; set;}
         public DateTime CreatedAt { get; set; }
     }

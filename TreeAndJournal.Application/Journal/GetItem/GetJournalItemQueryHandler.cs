@@ -18,11 +18,6 @@ namespace TreeAndJournal.Application.Journal.GetItem
 
         public async Task<JournalDto> Handle(GetJournalItemQuery request, CancellationToken cancellationToken)
         {
-            if (request is null)
-            {
-                throw new ArgumentNullException(nameof(request));
-            }
-
             var journalItem = await _journalRepository.GetByIdAsync(request.Id, cancellationToken);
 
             return _mapper.Map<JournalDto>(journalItem);

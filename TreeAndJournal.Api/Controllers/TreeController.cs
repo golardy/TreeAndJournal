@@ -16,7 +16,7 @@ namespace TreeAndJournal.Api.Controllers
             _sender = sender;
         }
 
-        [Route("/api.user.tree.get")]
+        [Route("api.user.tree.get")]
         [HttpPost]
         [SwaggerOperation(Description = "Returns your entire tree. If your tree doesn't exist it will be created automatically.")]
         [ProducesResponseType(typeof(List<NodeDto>), (int)HttpStatusCode.OK)]

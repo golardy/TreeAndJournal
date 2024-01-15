@@ -40,14 +40,14 @@ namespace TreeAndJournal.Api.Middleware
         {
             return exception switch
             {
-                SecureException secureException => new ExceptionDetails(
+                CustomValidationException customValidationException => new ExceptionDetails(
                     StatusCodes.Status500InternalServerError,
-                    typeof(SecureException).ToString(),
-                    secureException.EventId,
-                    JsonConvert.SerializeObject(new { message = secureException.Message })),
+                    ExceptionTypes.Secure.ToString(),
+                    customValidationException.EventId,
+                    JsonConvert.SerializeObject(new { message = customValidationException.Message })),
                 Exception commonException => new ExceptionDetails(
                     StatusCodes.Status500InternalServerError,
-                    typeof(Exception).ToString(),
+                    ExceptionTypes.Global.ToString(),
                     byte.MinValue,
                     JsonConvert.SerializeObject(new { message = commonException.Message }))
             };

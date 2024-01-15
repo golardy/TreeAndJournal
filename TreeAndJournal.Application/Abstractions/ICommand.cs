@@ -7,11 +7,7 @@ namespace TreeAndJournal.Application.Abstractions
     {
     }
 
-    public interface ICommand<TReponse> : IRequest<Result<TReponse>>, IBaseCommand
-    {
-    }
-
     public interface IBaseCommand
-    {
+    { 
     }
 }

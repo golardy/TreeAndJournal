@@ -1,9 +1,8 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using TreeAndJournal.Application.Abstractions.Date;
-using TreeAndJournal.Application.Behaviours;
 using TreeAndJournal.Application.Utils;
+using TreeAndJournal.Application.Abstractions.Behaviors;
 
 namespace TreeAndJournal.Application
 {
@@ -15,8 +14,8 @@ namespace TreeAndJournal.Application
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddMediatR(configuration =>
             {
+                configuration.AddOpenBehavior(typeof(LoggingExceptionsBehavior<,>));
                 configuration.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly);
-                configuration.AddOpenBehavior(typeof(LoggingBehavior<,>));
             });
 
             services.AddTransient<IDateTimeProvider, DateTimeProvider>();

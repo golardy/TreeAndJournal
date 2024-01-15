@@ -1,4 +1,5 @@
 ﻿using TreeAndJournal.Application.Abstractions;
+using TreeAndJournal.Application.Abstractions.Date;
 using TreeAndJournal.Application.Exceptions;
 using TreeAndJournal.Domain.Abstractions;
 
@@ -6,11 +7,15 @@ namespace TreeAndJournal.Application.Nodes.UpdateNode
 {
     public class UpdateNodeCommandHandler : ICommandHandler<UpdateNodeCommand>
     {
+        private readonly IDateTimeProvider _dateTimeProvider;
         private readonly INodeRepository _nodeRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public UpdateNodeCommandHandler(INodeRepository nodeRepository, IUnitOfWork unitOfWork)
+        public UpdateNodeCommandHandler(IDateTimeProvider dateTimeProvider,
+            INodeRepository nodeRepository, 
+            IUnitOfWork unitOfWork)
         {
+            _dateTimeProvider = dateTimeProvider;
             _nodeRepository = nodeRepository;
             _unitOfWork = unitOfWork;
         }
@@ -20,7 +25,7 @@ namespace TreeAndJournal.Application.Nodes.UpdateNode
             var dbItem = await _nodeRepository.GetNodeByIdAsync(request.NodeId, cancellationToken);
             if (dbItem == null)
             {
-                throw new CustomValidationException("Node not exists");
+                throw new CustomValidationException(_dateTimeProvider.UtcNow.Ticks, "Node not exists");
             }
 
             dbItem.Name = request.NewNodeName;

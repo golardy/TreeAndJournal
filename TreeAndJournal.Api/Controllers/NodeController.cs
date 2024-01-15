@@ -18,9 +18,10 @@ namespace TreeAndJournal.Api.Controllers
             _sender = sender;
         }
 
-        [Route("/api.user.node.create")]
+        [Route("api.user.node.create")]
         [HttpPost]
-        [SwaggerOperation(Description = "Create a new node in your tree. You must to specify a parent node ID that belongs to your tree. A new node name must be unique across all siblings.")]
+        [SwaggerOperation(Description = "Create a new node in your tree. You must to specify a parent node " +
+            "ID that belongs to your tree. A new node name must be unique across all siblings.")]
         [ProducesResponseType(typeof(IActionResult), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> Create(
             [FromQuery][Required] string treeName,
@@ -32,9 +33,10 @@ namespace TreeAndJournal.Api.Controllers
             return Ok(HttpStatusCode.OK);
         }
 
-        [Route("/api.user.node.rename")]
+        [Route("api.user.node.rename")]
         [HttpPost]
-        [SwaggerOperation(Description = "Rename an existing node in your tree. You must specify a node ID that belongs your tree. A new name of the node must be unique across all siblings.")]
+        [SwaggerOperation(Description = "Rename an existing node in your tree. You must specify a node ID " +
+            "that belongs your tree. A new name of the node must be unique across all siblings.")]
         [ProducesResponseType(typeof(IActionResult), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> Rename(
             [FromQuery][Required] string treeName,
@@ -46,7 +48,7 @@ namespace TreeAndJournal.Api.Controllers
             return Ok(HttpStatusCode.OK);
         }
 
-        [Route("/api.user.node.delete")]
+        [Route("api.user.node.delete")]
         [HttpPost]
         [SwaggerOperation(Description = "Delete an existing node in your tree. You must specify a node ID that belongs your tree.")]
         [ProducesResponseType(typeof(IActionResult), (int)HttpStatusCode.OK)]

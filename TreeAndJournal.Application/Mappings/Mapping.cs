@@ -11,8 +11,7 @@ namespace TreeAndJournal.Application.Mappings
         {
             CreateMap<JournalItem, JournalDto>()
                 .ForMember(target => target.Text, source => source.MapFrom(x => $"Request Path={x.Path}," +
-                $" Query params={x.QueryParams}, Body params={x.BodyParams}," +
-                $" StackTrace={x.StackTrace} "));
+                $" Request params={x.RequestParams} StackTrace={x.StackTrace} "));
 
             CreateMap<Node, NodeDto>();
         }
