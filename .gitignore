@@ -1,0 +1,13 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/ProjectEvaluation/treeandjournal.metadata.v7.bin
+/.vs/ProjectEvaluation/treeandjournal.projects.v7.bin
+/packages/MediatR.Contracts.2.0.1
+/.vs/TreeAndJournal
+/TreeAndJournal.Api/obj
+*.user
+/TreeAndJournal.Application/obj
+/TreeAndJournal.Domain/obj/Debug
+/TreeAndJournal.Infrastructure/obj
