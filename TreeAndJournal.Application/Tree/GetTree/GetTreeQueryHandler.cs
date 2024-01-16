@@ -25,10 +25,11 @@ namespace TreeAndJournal.Application.Tree.GetTree
             var dbItems = await _nodeRepository.GetNodesByTreeNameAsync(request.TreeName);
             if (!IsTreeExists(dbItems))
             {
-                _nodeRepository.Add(new Node { Name = request.TreeName, ParentNodeId = rootId });
+                var node = new Node { Name = request.TreeName, ParentNodeId = rootId };
+                _nodeRepository.Add(node);
                 await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-                return _mapper.Map<IEnumerable<NodeDto>>(new List<Node> { dbItems.First() });
+                return _mapper.Map<IEnumerable<NodeDto>>(new List<Node> { node });
             }
 
             var rootItem = dbItems.FirstOrDefault(x => x.Name.Equals(request.TreeName));
