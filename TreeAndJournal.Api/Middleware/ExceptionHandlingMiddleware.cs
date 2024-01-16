@@ -32,7 +32,15 @@ namespace TreeAndJournal.Api.Middleware
                 context.Response.StatusCode = exceptionDetails.StatusCode;
 
                 await context.Response.WriteAsJsonAsync(
-                    new { type = exceptionDetails.Type, id = exceptionDetails.Id, data = exceptionDetails.Data });
+                    new 
+                    { 
+                        type = exceptionDetails.Type, 
+                        id = exceptionDetails.Id, 
+                        data = new 
+                        { 
+                            message = exceptionDetails.Data 
+                        }
+                    });
             }
         }
 
@@ -44,12 +52,12 @@ namespace TreeAndJournal.Api.Middleware
                     StatusCodes.Status500InternalServerError,
                     ExceptionTypes.Secure.ToString(),
                     customValidationException.EventId,
-                    JsonConvert.SerializeObject(new { message = customValidationException.Message })),
+                    customValidationException.Message),
                 Exception commonException => new ExceptionDetails(
                     StatusCodes.Status500InternalServerError,
                     ExceptionTypes.Global.ToString(),
                     byte.MinValue,
-                    JsonConvert.SerializeObject(new { message = commonException.Message }))
+                    commonException.Message)
             };
         }
     }
